@@ -39,4 +39,4 @@ $ yarn install
 $ yarn android
 ```
 
-[Read further](codedoc.md) for the detailed explanation of app.js
+[Read further](codedoc.md) for the detailed explanation.
