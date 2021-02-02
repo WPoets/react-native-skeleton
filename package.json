@@ -1,0 +1,57 @@
+{
+  "name": "RNSkelton",
+  "version": "0.0.1",
+  "private": true,
+  "author": "Sooraj N Raju <soorajnraju@gmail.com>",
+  "scripts": {
+    "android": "react-native run-android",
+    "androidb": "react-native run-android --variant=release",
+    "ios": "react-native run-ios",
+    "start": "react-native start",
+    "stop": "taskkill -F -IM node.exe",
+    "build": "cd ./android && ./gradlew bundleRelease && cd ../",
+    "generate-debug-apk": "mkdir -vp android/app/src/main/assets && npx react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res && cd android && ./gradlew assembleDebug && open ./app/build/outputs/apk/",
+    "generate-apk": "rm -rf android/app/src/main/res/raw && cd android && ./gradlew assembleRelease && open ./app/build/outputs/apk/",
+    "android-device": "adb reverse tcp:8081 tcp:8081 && react-native run-android",
+    "clean": "cd android && ./gradlew clean && cd ../",
+    "install-apk": "cd android && ./gradlew installRelease",
+    "install-debug-apk": "cd android && ./gradlew installDebug",
+    "test": "jest",
+    "lint": "eslint .",
+    "sign": "cd ./android && ./gradlew signingReport"
+  },
+  "dependencies": {
+    "@react-native-community/geolocation": "^2.0.2",
+    "@react-native-community/google-signin": "^4.0.3",
+    "@react-native-community/netinfo": "^5.9.9",
+    "@react-native-firebase/analytics": "^7.4.1",
+    "@react-native-firebase/app": "^8.3.0",
+    "@react-native-firebase/auth": "^8.3.1",
+    "react": "16.13.1",
+    "react-native": "0.63.2",
+    "react-native-android-location-enabler": "^1.2.1",
+    "react-native-device-info": "^6.0.2",
+    "react-native-fbsdk": "^2.0.0",
+    "react-native-firebase-push-notifications": "0.0.8",
+    "react-native-linear-gradient": "^2.5.6",
+    "react-native-loading-dots": "^1.1.1",
+    "react-native-payumoney": "^1.0.0",
+    "react-native-permissions": "^2.1.5",
+    "react-native-splash-screen": "^3.2.0",
+    "react-native-tts": "^3.2.0",
+    "react-native-webview": "^10.7.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.10.5",
+    "@babel/runtime": "^7.10.5",
+    "@react-native-community/eslint-config": "^2.0.0",
+    "babel-jest": "^26.1.0",
+    "eslint": "^7.5.0",
+    "jest": "^26.1.0",
+    "metro-react-native-babel-preset": "^0.61.0",
+    "react-test-renderer": "16.13.1"
+  },
+  "jest": {
+    "preset": "react-native"
+  }
+}
