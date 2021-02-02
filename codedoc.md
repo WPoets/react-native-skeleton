@@ -1,6 +1,6 @@
 ## Code Documentation
 
-### How to change splash screen backround and logo ?
+### How to change splash screen background and logo ?
 
 src/images
 
