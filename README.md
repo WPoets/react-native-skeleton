@@ -18,13 +18,13 @@ Note: We are using firebase and facebook SDK
 In this skelton we have used the package ID: com.example.rn .
 So you will have to replace "com.example.rn" with your package id in the "android" folder.
 
-## How to change package ID references ?
+### How to change package ID references ?
 
 1. search for the current package ID "com.example.rn" in the "android folder"
 2. you will find the old references and you may replace it with your new package id
 3. you can update the folder names eg: android/app/src/debug/java/com/example/rn to android/app/src/debug/java/com/example1/rn1
 
-## Using release keystore
+### Using release keystore
 
 Paste your release keystore in android/app folder and update references in android/gradle.properties
 
@@ -49,8 +49,6 @@ $ yarn install
 $ yarn android
 ```
 
-[Read further](codedoc.md) for the detailed explanation.
-
 ### Changing webView source
 
 App.js
@@ -62,3 +60,5 @@ WebView
     source={{ uri: 'https://example.com' }}
 ```
 Find the above code and change the source
+
+[Read further](codedoc.md) for the detailed explanation.

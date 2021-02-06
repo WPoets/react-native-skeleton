@@ -6,7 +6,7 @@ src/images
 
 Replace background.png and logo.png 
 
-## How to change ic_launcher icons
+### How to change ic_launcher icons
 
 Go to android/app/src/main/res and update icons in midmap folders
 
