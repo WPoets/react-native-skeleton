@@ -6,6 +6,9 @@ src/images
 
 Replace background.png and logo.png 
 
+## How to change ic_launcher icons
+
+Go to android/app/src/main/res and update icons in midmap folders
 
 ### How to replace facebook app id ?
 
@@ -82,15 +85,3 @@ App.js
 ```
 
 Update merchantId, key, salt and product details
-
-### How to update webView source ?
-
-App.js
-
-```
-WebView
-    originWhitelist={["https://", "file://"]}
-    allowsInlineMediaPlayback
-    source={{ uri: 'https://example.com' }}
-```
-Find the above code and change the source
