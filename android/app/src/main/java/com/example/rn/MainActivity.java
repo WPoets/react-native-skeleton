@@ -3,7 +3,8 @@ package com.example.rn;
 import com.facebook.react.ReactActivity;
 import android.os.Bundle; // Import this.
 import android.view.WindowManager;
-
+import io.branch.rnbranch.*;
+import android.content.Intent;
 public class MainActivity extends ReactActivity {
 
   /**
@@ -15,4 +16,17 @@ public class MainActivity extends ReactActivity {
     return "RNSkelton";
   }
   
+  // Override onStart, onNewIntent:
+  @Override
+  protected void onStart() {
+      super.onStart();
+      RNBranchModule.initSession(getIntent().getData(), this);
+  }
+
+  @Override
+  public void onNewIntent(Intent intent) {
+      super.onNewIntent(intent);
+      RNBranchModule.onNewIntent(intent);
+  }
+
 }

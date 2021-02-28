@@ -12,6 +12,11 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 import androidx.multidex.MultiDexApplication;
 
+import android.webkit.WebView;
+import com.airbnb.android.react.lottie.LottiePackage;
+
+// import from RNBranch
+import io.branch.rnbranch.RNBranchModule;
 
 public class MainApplication extends MultiDexApplication  implements ReactApplication {
 
@@ -28,6 +33,7 @@ public class MainApplication extends MultiDexApplication  implements ReactApplic
           List<ReactPackage> packages = new PackageList(this).getPackages();
           // Packages that cannot be autolinked yet can be added manually here, for example:
           // packages.add(new MyReactNativePackage());
+          packages.add(new LottiePackage());
           return packages;
         }
 
@@ -45,6 +51,12 @@ public class MainApplication extends MultiDexApplication  implements ReactApplic
   @Override
   public void onCreate() {
     super.onCreate();
+
+    //enableDebugging
+    WebView.setWebContentsDebuggingEnabled(true);
+
+    RNBranchModule.getAutoInstance(this);
+
     SoLoader.init(this, /* native exopackage */ false);
     initializeFlipper(this, getReactNativeHost().getReactInstanceManager());
   }

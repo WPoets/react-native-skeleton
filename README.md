@@ -10,6 +10,7 @@ https://reactnative.dev/docs/environment-setup
 ### Third Paty Dependencies
 1. google-services.json
 2. facebook app id
+3. branch.io keys
 
 Note: We are using firebase and facebook SDK
 
@@ -54,11 +55,8 @@ $ yarn android
 App.js
 
 ```
-WebView
-    originWhitelist={["https://", "file://"]}
-    allowsInlineMediaPlayback
-    source={{ uri: 'https://example.com' }}
+apiUrl: 'https://alpha.wordpoets.com/api/initialize',
 ```
-Find the above code and change the source
+Find the above code and change the url
 
 [Read further](codedoc.md) for the detailed explanation.

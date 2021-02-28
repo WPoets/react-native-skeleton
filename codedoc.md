@@ -2,9 +2,9 @@
 
 ### How to change splash screen background and logo ?
 
-src/images
+android/app/src/main/res/drawable
 
-Replace background.png and logo.png 
+Update with your files
 
 ### How to change ic_launcher icons
 
@@ -17,6 +17,10 @@ Open android/app/src/main/res/values/strings.xml and replace facebook_app_id, fb
 ### Where to change google-service.json ?
 
 android/app/google-services.json
+
+### Where to change branch keys ?
+
+android/app/src/main/AndroidManifest.xml or branch.json (if you are using branch.json omit in manifest.xml)
 
 ### Where to change release key information ?
 

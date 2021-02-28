@@ -34,16 +34,59 @@
         android:exported="true"
         >
         <intent-filter>
-        <action android:name="android.intent.action.MAIN" />
-        <category android:name="android.intent.category.LAUNCHER" />
+          <action android:name="android.intent.action.MAIN" />
+          <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+
+        <!-- Handle Intent -->
+        <intent-filter>
+          <data android:scheme="https" android:host="example.com" android:pathPrefix="/webview"  />
+          <data android:scheme="https" android:host="www.example.com" android:pathPrefix="/webview"  />
+          <action android:name="android.intent.action.VIEW" />
+          <category android:name="android.intent.category.DEFAULT" />
+          <category android:name="android.intent.category.BROWSABLE" />
+        </intent-filter>
+
+        <!-- Handle Intent -->
+        <intent-filter>
+          <data android:scheme="example" />
+          <action android:name="android.intent.action.VIEW" />
+          <category android:name="android.intent.category.DEFAULT" />
+          <category android:name="android.intent.category.BROWSABLE" />
+        </intent-filter>
+
+
+        <!-- Branch -->
+        <intent-filter>
+          <data android:scheme="branchandroid" />
+          <action android:name="android.intent.action.VIEW" />
+          <category android:name="android.intent.category.DEFAULT" />
+          <category android:name="android.intent.category.BROWSABLE" />
+        </intent-filter>
+
+        <!-- Branch App Links (optional) -->
+        <intent-filter android:autoVerify="true">
+          <action android:name="android.intent.action.VIEW" />
+          <category android:name="android.intent.category.DEFAULT" />
+          <category android:name="android.intent.category.BROWSABLE" />
+          <data android:scheme="https" android:host="f1xcs.app.link" />
+          <data android:scheme="https" android:host="f1xcs-alternate.app.link" />
       </intent-filter>
+
       </activity>
       <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" />
 
+      <!-- Firebase notification channel  -->
       <meta-data
         android:name="com.google.firebase.messaging.default_notification_channel_id"
         android:value="@string/default_notification_channel_id"/>
+
+      <!-- Firebase icon  -->
+      <meta-data android:name="com.google.firebase.messaging.default_notification_icon" android:resource="@drawable/ic_notif_icon" />
+      <meta-data android:name="com.google.firebase.messaging.default_notification_color" android:resource="@color/colorAccent" />
+
       <receiver android:name="com.afrihost.firebase.notifications.RNFirebaseNotificationReceiver"/>
+
       <receiver android:enabled="true" android:exported="true"  android:name="com.afrihost.firebase.notifications.RNFirebaseNotificationsRebootReceiver">
         <intent-filter>
         <action android:name="android.intent.action.BOOT_COMPLETED"/>
@@ -54,7 +97,15 @@
       </receiver>
       
      <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>
-        
+
+     <meta-data android:name="com.google.android.gms.ads.AD_MANAGER_APP" android:value="true"/>
+
+      <!-- Branch keys -->
+      <!-- (Omit if setting keys in branch.json) -->
+      <meta-data android:name="io.branch.sdk.BranchKey" android:value="key_live_kaFuWw8WvY7yn1d9yYiP8gokwqjV0Sw"/>
+      <meta-data android:name="io.branch.sdk.BranchKey.test" android:value="key_test_hlxrWC5Zx16DkYmWu4AHiimdqugRYMr"/>
+
+     
     </application>
 
 </manifest>
