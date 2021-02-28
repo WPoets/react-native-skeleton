@@ -8,11 +8,11 @@ Use below link to know how to configure the environment.
 https://reactnative.dev/docs/environment-setup
 
 ### Third Paty Dependencies
-1. google-services.json
+1. google-services.json (Mandatory)
 2. facebook app id
 3. branch.io keys
 
-Note: We are using firebase and facebook SDK
+Note: We are using firebase, facebook SDK and branch.io
 
 ### Package ID
 
