@@ -6,9 +6,11 @@ android/app/src/main/res/drawable
 
 Update with your files
 
+### How to change lottie animation ?
+ Visit https://lottiefiles.com/ and get your favourite one's lottie json and paste it on src/components/loader_animation.json
 ### How to change ic_launcher icons
 
-Go to android/app/src/main/res and update icons in midmap folders
+Go to android/app/src/main/res and update icons in midmap folders. Update both 'ic_launcher_foreground.png' and 'ic_launcher.png' because the basic behavior is being overrided from android/app/src/main/res/mipmap-anydpi-v26/*.xml
 
 ### How to replace facebook app id ?
 
