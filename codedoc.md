@@ -91,3 +91,9 @@ App.js
 ```
 
 Update merchantId, key, salt and product details
+
+### How to enable screen shot
+
+Find this file android/app/src/main/java/com/example/rn/MainActivity.java and comment this line
+
+```getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);```
