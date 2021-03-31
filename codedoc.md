@@ -132,7 +132,8 @@ Make a postMessage communication using the action "ringerMode"
 window.ReactNativeWebView.postMessage(`{"action":"ringerMode", "message":""}`);
 ```
 
-```var ringerModeAction = (message)=>{
+```
+var ringerModeAction = (message)=>{
 	let json = message.data;
 	switch(json.action){
 		case 'ringerMode':
