@@ -97,3 +97,28 @@ Update merchantId, key, salt and product details
 Find this file android/app/src/main/java/com/example/rn/MainActivity.java and comment this line
 
 ```getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);```
+
+### How to detect while app is being switched ?
+
+Listen for the action "appState" from webview and process the state data.
+
+Eg:
+
+```var appStateAction = (message)=>{
+        	let json = message.data;
+            switch(json.action){
+              case 'appState':
+              	let reply = json.message;
+                spa.focus_lost_count = reply.appStateCount;
+                if(spa.focus_lost_count==1)
+                {
+                    //first time app switched
+                }
+                else if(spa.focus_lost_count>1){
+                    //switched again
+                }
+              break;
+              default: console.log('unknown event recieved');
+            }
+};
+window.addEventListener("message", appStateAction);```
