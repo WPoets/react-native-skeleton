@@ -31,6 +31,7 @@ import crashlytics from '@react-native-firebase/crashlytics';
 import branch, { BranchEvent } from 'react-native-branch';
 import {Header, Icon} from 'react-native-elements';
 import Tts from 'react-native-tts';
+import RingerMode from 'react-native-ringer-mode';
 
 // REPLACE WITH YOUR APP URLS
 const APP_STORE_LINK = 'https://apps.apple.com/in/app/signal-private-messenger/id874139669';
@@ -830,6 +831,13 @@ export default class App extends Component<Props> {
 				});
 			case 'checkPermission':
 				checkPermissions();
+				break;
+			case 'ringerMode':
+				let ringerMode = await RingerMode.getRingerMode();
+				let ringerModeData = {};
+				ringerModeData.action = 'ringerMode';
+				ringerModeData.message = ringerMode;
+				this.sendToWebView(webView, JSON.stringify(ringerModeData));
 				break;
 			case 'resetAppStateCount':
 				this.setState({appStateCount:0});

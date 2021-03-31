@@ -43,6 +43,7 @@
     "react-native-idfa": "^4.1.0",
     "react-native-payumoney": "^1.0.0",
     "react-native-permissions": "^2.1.5",
+    "react-native-ringer-mode": "^1.1.0",
     "react-native-safe-area-context": "^3.1.9",
     "react-native-simple-download-manager": "^1.4.1",
     "react-native-snackbar": "^2.3.2",
