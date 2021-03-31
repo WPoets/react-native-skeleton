@@ -105,20 +105,43 @@ Listen for the action "appState" from webview and process the state data.
 Eg:
 
 ```var appStateAction = (message)=>{
-        	let json = message.data;
-            switch(json.action){
-              case 'appState':
-              	let reply = json.message;
-                spa.focus_lost_count = reply.appStateCount;
-                if(spa.focus_lost_count==1)
-                {
-                    //first time app switched
-                }
-                else if(spa.focus_lost_count>1){
-                    //switched again
-                }
-              break;
-              default: console.log('unknown event recieved');
-            }
+	let json = message.data;
+	switch(json.action){
+		case 'appState':
+		let reply = json.message;
+		spa.focus_lost_count = reply.appStateCount;
+		if(spa.focus_lost_count==1)
+		{
+			//first time app switched
+		}
+		else if(spa.focus_lost_count>1){
+			//switched again
+		}
+		break;
+		default: console.log('unknown event recieved');
+	}
 };
-window.addEventListener("message", appStateAction);```
+window.addEventListener("message", appStateAction);
+```
+
+### How to detect Ringer Mode
+
+Make a postMessage communication using the action "ringerMode"
+
+```
+window.ReactNativeWebView.postMessage(`{"action":"ringerMode", "message":""}`);
+```
+
+```var ringerModeAction = (message)=>{
+	let json = message.data;
+	switch(json.action){
+		case 'ringerMode':
+		let mode = json.message;
+		console.log(mode);
+		//eg: SILENT
+		break;
+		default: console.log('unknown event recieved');
+	}
+};
+window.addEventListener("message", ringerModeAction);
+```
