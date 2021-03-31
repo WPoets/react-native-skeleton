@@ -1,5 +1,5 @@
 import React, { Component, useState, useEffect } from 'react';
-import { StyleSheet, Text, View, Platform, Dimensions, PermissionsAndroid, Alert, Button, BackHandler, Image, ImageBackground, Linking, SafeAreaView} from 'react-native';
+import { StyleSheet, Text, View, Platform, Dimensions, PermissionsAndroid, Alert, Button, BackHandler, Image, ImageBackground, Linking, SafeAreaView, AppState} from 'react-native';
 import { WebView } from 'react-native-webview';
 import { check, PERMISSIONS, RESULTS, requestMultiple } from 'react-native-permissions';
 import Geolocation from '@react-native-community/geolocation';
@@ -129,6 +129,9 @@ export default class App extends Component<Props> {
 				first : null,
 			},
 			initialLink: null,
+			//For App State
+			appState: AppState.currentState,
+			appStateCount: 0
 		};
 		this.webView = null;
 		this.onMessageReceived = this.onMessageReceived.bind(this);
@@ -184,6 +187,9 @@ export default class App extends Component<Props> {
 			);
 		}catch(e){
 		}
+
+		// For App State
+		AppState.addEventListener("change", this.handleAppStateChange);
 	}
 
 
@@ -196,6 +202,27 @@ export default class App extends Component<Props> {
 
 		}
 	}
+
+	//For App State
+	handleAppStateChange = nextAppState => {
+		if (
+		  	this.state.appState.match(/inactive|background/) &&
+		  	nextAppState === "active"
+		) {
+		  	//console.log("App has come to the foreground!");
+		}
+
+		this.setState({ appState: nextAppState});
+
+		if(this.state.appState=='active'){
+			this.setState({appStateCount: this.state.appStateCount+1 });
+			let appStateData = {};
+			appStateData.action = 'appState';
+			appStateData.message = {appState: this.state.appState, appStateCount: this.state.appStateCount};
+			console.log(appStateData);
+			this.sendToWebView(this.webView, JSON.stringify(appStateData));
+		}
+	};
 
 	handleConnectivityChange = state => {
 		this.setState({ isConnected: state.isConnected });
@@ -802,8 +829,10 @@ export default class App extends Component<Props> {
 					},
 				});
 			case 'checkPermission':
-
 				checkPermissions();
+				break;
+			case 'resetAppStateCount':
+				this.setState({appStateCount:0});
 				break;
 			default:
 				break;
