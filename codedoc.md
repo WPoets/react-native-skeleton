@@ -146,3 +146,141 @@ var ringerModeAction = (message)=>{
 };
 window.addEventListener("message", ringerModeAction);
 ```
+
+### Sample Splash.js
+
+```
+import React, { Component } from 'react';
+import { Animated, Text, View, ImageBackground, Image,StyleSheet } from 'react-native';
+import LoadingDots from "react-native-loading-dots";
+import LinearGradient from 'react-native-linear-gradient'
+import NetInfo from "@react-native-community/netinfo";
+class SplashScreen extends Component {
+    constructor(props) {
+		super(props);
+		this.state = { isConnected: true}
+    }
+
+    componentDidMount() {
+		this.unsubscribe = NetInfo.addEventListener(this.handleConnectivityChange);
+	}
+
+	componentWillUnmount() {
+		this.unsubscribe();
+	}
+
+	handleConnectivityChange = state => {
+		this.setState({ isConnected: state.isConnected });
+	};
+
+    render() {
+        let Offline_Text = (
+			<Text style={styles2.Offline_Text}>Check your INTERNET !</Text>
+		);
+        return (
+            <View>
+                <LinearGradient
+					colors={['#1abc9c', '#004e77']}
+				>
+					<ImageBackground source={{ uri: 'background' }} style={styles2.backgroundImage}>
+						<View style={styles2.SplashScreen_ChildView}>
+							<View style={styles2.Circle}>
+								<Image source={{ uri: 'logo' }}
+									style={styles2.Logo} />
+							</View>
+							<View style={styles2.dotsWrapper}>
+								<LoadingDots dots={4} size={10} colors={['#000', '#000', '#000', '#000']} />
+							</View>
+							<Text style={styles2.Loading1}>LOADING</Text>
+							{/* <Text style={styles.Loading1}>Attitude. Skill. Knowledge.</Text>
+							<Text style={styles.Loading2}> Your gateway to career success.</Text> */}
+							{(this.state.isConnected === false) ? Offline_Text : null}
+						</View>
+					</ImageBackground>
+				</LinearGradient>
+            </View>
+
+        )
+    }
+}
+
+const styles2 = StyleSheet.create({
+	SplashScreen_ChildView:
+	{
+		justifyContent: 'center',
+		alignItems: 'center',
+		flex: 1,
+	},
+
+	Loading1: {
+		color: '#fff',
+		fontFamily: 'Montserrat-Regular',
+		textTransform: 'uppercase',
+		fontSize: 18,
+		letterSpacing: 0,
+		top: 30,
+		justifyContent: 'center'
+	},
+
+	Loading2: {
+		color: '#fff',
+		fontFamily: 'Montserrat-Regular',
+		fontSize: 18,
+		letterSpacing: 0,
+		top: 30,
+		justifyContent: 'center',
+		marginTop: 10
+	},
+
+	Circle: {
+		backgroundColor: '#fff',
+		width: 150,
+		height: 150,
+		borderRadius: 100,
+	},
+
+	Logo: {
+		width: '60%',
+		height: '70%',
+		resizeMode: 'contain',
+		top: 20,
+		left: 30
+	},
+
+	dotsWrapper: {
+		width: 100,
+		marginTop: 20,
+		marginTop: 30,
+		opacity: 0.5
+	},
+
+	Offline_Text: {
+		width: 200,
+		height: 50,
+		backgroundColor: '#fff',
+		textAlign: "center",
+		paddingTop: 15,
+		borderRadius: 50,
+		bottom: 10,
+		position: 'absolute'
+	},
+
+	backgroundImage: {
+		height: '100%',
+		width: '100%'
+	},
+    
+    Offline_Text: {
+		width: 200,
+		height: 50,
+		backgroundColor: '#fff',
+		textAlign: "center",
+		paddingTop: 15,
+		borderRadius: 50,
+		bottom: 10,
+		position: 'absolute'
+	},
+});
+
+export default SplashScreen; 
+```
