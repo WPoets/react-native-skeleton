@@ -48,6 +48,23 @@ onMessageReceived
 
 Modify above function to add your own custom actions
 
+### How to do google signin via postMessage communication ?
+
+```
+window.ReactNativeWebView.postMessage(`{"action":"googleSignIn", "message":""}`);
+
+var loginHandler = (message)=>{
+	let json = message.data;
+	switch(json.action){
+		case 'user_data':
+		alert(JSON.stringify(json.data));
+		break;
+		default: console.log('unknown event recieved');
+	}
+};
+window.addEventListener("message", loginHandler);
+```
+
 ### How to configure payU money ?
 
 App.js
