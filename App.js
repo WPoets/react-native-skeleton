@@ -959,28 +959,37 @@ export default class App extends Component<Props> {
 			firstName: data.firstName,
 			email: data.email,
 			phone: data.phone,
-			merchantId: '123456',
-			key: 'abcdefgh',
+			merchantId: '<MERCHANT_ID>',
+			key: '<KEY>',
 			successUrl: 'https://www.payumoney.com/mobileapp/payumoney/success.php',
 			failedUrl: 'https://www.payumoney.com/mobileapp/payumoney/failure.php',
 			isDebug: true,
 			hash: this.hashGenerator(data)
 		};
 
-		let response = await PayuMoney(payData);
-		return response;
+		try{
+			let response = await PayuMoney(payData);
+			return response.response;
+		}catch(e){
+			let response = {};
+			response.result = {};
+			response.result.status = "failure";
+			response.result.txnId = data.txnId;
+			return response;
+		}
+
 	};
 
 	/*** Hash Generator ****/
 	hashGenerator = (data) => {
 		return HashGenerator({
-			key: "abcdefgh",
+			key: "<KEY>",
 			amount: data.amount,
 			email: data.email,
 			txnId: data.txnId,
 			productName: data.productName,
 			firstName: data.firstName,
-			salt: "qwertyuiop",
+			salt: "<SALT>",
 		});
 	}
 
