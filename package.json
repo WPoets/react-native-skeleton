@@ -11,7 +11,7 @@
     "stop": "taskkill -F -IM node.exe",
     "build": "cd ./android && ./gradlew bundleRelease && cd ../",
     "generate-debug-apk": "mkdir -vp android/app/src/main/assets && npx react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res && cd android && ./gradlew assembleDebug && open ./app/build/outputs/apk/",
-    "generate-apk": "rm -rf android/app/src/main/res/raw && cd android && ./gradlew assembleRelease && open ./app/build/outputs/apk/",
+    "generate-apk": "rm -rf android/app/src/main/res/raw && cd android && ./gradlew app:assembleRelease && open ./app/build/outputs/apk/",
     "android-device": "adb reverse tcp:8081 tcp:8081 && react-native run-android",
     "clean": "cd android && ./gradlew clean && cd ../",
     "install-apk": "cd android && ./gradlew installRelease",
