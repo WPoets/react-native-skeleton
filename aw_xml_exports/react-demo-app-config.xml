@@ -73,10 +73,10 @@
     
     <script>
       jQuery( document ).ready(function( $ ) {
-        $.getScript('[aw2.get url.cdn /]spa/spa.v2.min.js', function() {
+        $.getScript('[env.get settings.cdn /]spa/spa.v2.min.js', function() {
           spa.app.start({
             homeurl:'[aw2.get url.home /]',
-            cdn:'[aw2.get url.cdn /]',
+            cdn:'[env.get settings.cdn /]',
             path:'[aw2.get app.path /]/'
           });
         });
