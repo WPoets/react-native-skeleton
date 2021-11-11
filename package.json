@@ -4,7 +4,7 @@
   "private": true,
   "author": "Sooraj N Raju <soorajnraju@gmail.com>",
   "contributors": [
-    {"name":"Pratik","email":"amit@wpoets.com"}
+    {"name":"Pratik","email":"pratik@amiworks.com"}
   ],
   "scripts": {
     "android": "react-native run-android",
