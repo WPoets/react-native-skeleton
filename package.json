@@ -2,7 +2,10 @@
   "name": "RNSkelton",
   "version": "2.0.0",
   "private": true,
-  "author": "Pratik <pratik@amiworks.com>",
+  "author": "Sooraj N Raju <soorajnraju@gmail.com>",
+  "contributors": [
+    {"name":"Pratik","email":"amit@wpoets.com"}
+  ],
   "scripts": {
     "android": "react-native run-android",
     "androidb": "react-native run-android --variant=release",
