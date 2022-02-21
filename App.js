@@ -32,6 +32,7 @@ import branch, { BranchEvent } from 'react-native-branch';
 import {Header, Icon} from 'react-native-elements';
 import Tts from 'react-native-tts';
 import RingerMode from 'react-native-ringer-mode';
+import InAppReview from "react-native-in-app-review";
 
 // REPLACE WITH YOUR APP URLS
 const APP_STORE_LINK = 'https://apps.apple.com/in/app/signal-private-messenger/id874139669';
@@ -684,6 +685,46 @@ export default class App extends Component<Props> {
 		}
 	}
 
+	onShare = async (share_title,share_message,share_url) => {
+		try {
+		const result = await Share.share({
+			message:share_message,
+			url:share_url,
+			Title:share_title,
+		});
+
+		if (result.action === Share.sharedAction) {
+			if (result.activityType) {
+			// shared with activity type of result.activityType
+			} else {
+			// shared
+			}
+		} else if (result.action === Share.dismissedAction) {
+			// dismissed
+		}
+		} catch (error) {
+			alert(error.message);
+		}
+	};
+
+	addReview = async () => {
+		InAppReview.isAvailable();
+		InAppReview.RequestInAppReview()
+		.then((hasFlowFinishedSuccessfully) => {
+			
+			// when return true in android it means user finished or close review flow
+			console.log('InAppReview in android', hasFlowFinishedSuccessfully);
+			//Alert.alert('InAppReview in android');
+
+			if (hasFlowFinishedSuccessfully) {
+				//Alert.alert('hasFlowFinishedSuccessfully');
+			}
+		})
+		.catch((error) => {
+			console.log(error);
+		});
+	};
+
 	getCurrentUser = async () => {
 		const currentUser = await GoogleSignin.getCurrentUser();
 		this.setState({ currentUser });
@@ -842,6 +883,12 @@ export default class App extends Component<Props> {
 			case 'resetAppStateCount':
 				this.setState({appStateCount:0});
 				break;
+			case 'share':
+				this.onShare(messageObject['title'], messageObject['message'],messageObject['url']);
+				break;	
+			case 'addreview':
+				this.addReview();
+				break;	
 			default:
 				break;
 
