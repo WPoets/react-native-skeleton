@@ -11,6 +11,7 @@ import com.facebook.soloader.SoLoader;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 import androidx.multidex.MultiDexApplication;
+import com.ibits.react_native_in_app_review.AppReviewPackage;
 
 import android.webkit.WebView;
 import com.airbnb.android.react.lottie.LottiePackage;

@@ -215,6 +215,8 @@ dependencies {
     implementation 'com.google.android.gms:play-services-safetynet:17.0.1'
     implementation project(':lottie-react-native')
 
+    implementation project(':react-native-in-app-review')
+
     debugImplementation("com.facebook.flipper:flipper:${FLIPPER_VERSION}") {
       exclude group:'com.facebook.fbjni'
     }
